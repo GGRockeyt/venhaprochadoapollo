@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chá de Bebê - Apollo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Chá de Bebê do Apollo</h1>
+    <p>Venha celebrar a chegada do nosso pequeno!</p>
+    <img src="images/imagem.jpg" alt="Imagem de celebração" style="width: 300px; margin-top: 20px;">
+</header>
+
+<nav>
+    <a href="#rsvp" id="openRSVPBtn">Estarei lá!</a>
+    <a href="#presentes" id="openPresentListBtn">Presentes</a>
+    <a href="#galeria" id="openGaleriaBtn">Galeria</a>
+    <a href="#contato" id="openContatoBtn">Contato</a>
+    <a href="#sobre" id="openSobreBtn">Sobre</a>
+    <a href="#localizacao" id="openLocalizacaoBtn">Local</a> <!-- Adicionada a aba de Local -->
+</nav>
+
+<main>
+    <!-- Seção Sobre -->
+    <section id="sobre" style="display: none;">
+        <h2>Sobre</h2>
+        <p>Estamos muito felizes em celebrar a chegada do nosso pequeno Apollo! Venha compartilhar este momento especial conosco!</p>
+        <p><strong>Data:</strong> 22 De Dezembro </p>
+        <p><strong>Horário:</strong> 15:00 horas</p>
+    </section>
+
+    <!-- Seção Presentes -->
+    <section id="presentes" style="display: none;">
+        <h2>Lista de Presentes</h2>
+        <p>Veja as opções de presentes para o chá de bebê:</p>
+        <div class="present-list">
+            <div class="present-item">
+                <img src="images/presente1.jpg" alt="Lenço Umedecido">
+                <p>Lenço Umedecido</p>
+            </div>
+            <div class="present-item">
+                <img src="images/presente2.jpg" alt="Shampoo">
+                <p>Shampoo</p>
+            </div>
+            <div class="present-item">
+                <img src="images/presente3.jpg" alt="Sabonete">
+                <p>Sabonete</p>
+            </div>
+            <div class="present-item">
+                <img src="images/presente4.jpg" alt="Perfume">
+                <p>Perfume</p>
+            </div>
+            <div class="present-item">
+                <img src="images/presente5.jpg" alt="Roupas">
+                <p>Roupas</p>
+            </div>
+            <div class="present-item">
+                <img src="images/presente6.jpg" alt="Outros (Da Sua Preferência)">
+                <p>Outros (Da Sua Preferência)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Galeria -->
+    <section id="galeria" style="display: none;">
+        <h2>Galeria</h2>
+        <div class="gallery">
+            <img src="images/imagem1.jpg" alt="Foto 1">
+            <img src="images/imagem2.jpg" alt="Foto 2">
+            <img src="images/imagem3.jpg" alt="Foto 3">
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" style="display: none;">
+        <h2>Contato</h2>
+        <p>Se tiver alguma dúvida, entre em contato:</p>
+        <p>Email: <a href="mailto:aleehnathys2@gmail.com">aleehnathys2@gmail.com</a></p>
+        <p>Telefone: (79)9 9921-0136</p>
+    </section>
+
+    <!-- Seção de Confirmação de Presença -->
+    <section id="rsvp">
+        <h2>Confirmação de Presença</h2>
+        <p>Por favor, confirme sua presença.</p>
+        <form id="rsvpForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="acompanha">Como você vem?</label>
+            <select id="acompanha" name="acompanha" required>
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="sozinho">Sozinho</option>
+                <option value="acompanhado">Acompanhado</option>
+                <option value="familia">Com a família</option>
+            </select>
+            <input type="submit" value="Confirmar">
+        </form>
+        <div id="confirmationMessage" style="display: none; margin-top: 10px; color: green;"></div>
+        <!-- Link para o WhatsApp -->
+        <div id="whatsappLink" style="display: none; margin-top: 10px;">
+            <p>Você será redirecionado para o grupo do WhatsApp.</p>
+        </div>
+    </section>
+
+    <!-- Seção de Localização -->
+    <section id="localizacao" style="display: none;">
+        <h2>Local do Chá</h2>
+        <p>Veja como chegar ao local do evento:</p>
+        <button id="loadMapBtn" style="display: inline-block;">Carregar Mapa</button>
+        <div id="mapContainer" style="display: none;">
+            <!-- Novo link do Google Maps com a URL fornecida -->
+            <iframe src="https://www.google.com/maps?q=R.+Nicarágua+-+América,+Aracaju+-+SE,+49080-230&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+            <p>Endereço do evento:</p>
+            <p><strong>R. Nicarágua - América, Aracaju - SE, 49080-230</strong><br>
+               Centro Social Dom Vicente Távora</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Obrigado por fazer parte deste momento especial!</p>
+</footer>
+
+<script>
+// Lógica de navegação entre seções
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('main section');
+
+// Oculta todas as seções por padrão
+sections.forEach(section => section.style.display = 'none');
+
+// Exibe a seção correspondente ao link clicado
+navLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Oculta todas as seções
+        sections.forEach(section => section.style.display = 'none');
+
+        // Exibe a seção selecionada
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            targetSection.style.display = 'block';
+        }
+    });
+});
+
+// Exibe a seção "Sobre" inicialmente
+document.getElementById('sobre').style.display = 'block';
+
+// Função para lidar com a confirmação de presença
+document.getElementById('rsvpForm').onsubmit = function(event) {
+    event.preventDefault(); // Impede o envio tradicional do formulário
+
+    // Obter os dados do formulário
+    var nome = document.getElementById('nome').value;
+    var acomp = document.getElementById('acompanha').value;
+
+    // Mostrar a mensagem de confirmação
+    document.getElementById('confirmationMessage').innerText = nome + ", seu convite foi confirmado com sucesso!";
+    document.getElementById('confirmationMessage').style.display = 'block';
+
+    // Exibir a localização e o mapa
+    document.getElementById('localizacao').style.display = 'block';
+    document.getElementById('loadMapBtn').style.display = 'inline-block';
+
+    // Redirecionamento automático para o WhatsApp
+    setTimeout(function() {
+        window.location.href = "https://chat.whatsapp.com/IbWAdAVn1H6FbIuDyakXCl";
+    }, 3000); // Redireciona após 3 segundos
+
+    // Salvar no localStorage
+    localStorage.setItem('confirmouPresenca', 'true');
+    localStorage.setItem('nome', nome);
+
+    // Limpar o formulário
+    this.reset();
+};
+
+// Função para carregar o mapa
+document.getElementById('loadMapBtn').onclick = function() {
+    var mapContainer = document.getElementById('mapContainer');
+    if (mapContainer.style.display === 'none') {
+        mapContainer.style.display = 'block';
+        this.innerText = 'Esconder Mapa';
+    } else {
+        mapContainer.style.display = 'none';
+        this.innerText = 'Carregar Mapa';
+    }
+};
+
+// Verifica se a pessoa já confirmou presença ao voltar para a página
+window.onload = function() {
+    if (localStorage.getItem('confirmouPresenca') === 'true') {
+        // Exibe a confirmação e a localização
+        document.getElementById('confirmationMessage').innerText = localStorage.getItem('nome') + ", seu convite foi confirmado com sucesso!";
+        document.getElementById('confirmationMessage').style.display = 'block';
+        document.getElementById('localizacao').style.display = 'block';
+        document.getElementById('loadMapBtn').style.display = 'inline-block';
+    }
+};
+</script>
+
+</body>
+</html>
